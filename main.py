@@ -10,8 +10,8 @@ def load():
 
 #немного фактов: Курц ты крут:D
 class DisBot(discord.Client):
-    main_prefix = conf.main_prefix
-    prefix = ">"
+    main_prefix = conf.main_prefix #prefix not will change
+    prefix = ">" #prefix will change
     commands = {
         ""
     }
@@ -19,17 +19,17 @@ class DisBot(discord.Client):
     async def on_ready(self):
         print("Бот начал работу")
         
-    async def call_cmd(self, cmd):
+    async def call_cmd(self, msg, cmd):
         pass
 
     async def on_message(self, message):
         if message.author.id != self.user.id:
             if message.content.startswith(self.prefix):
-                cmd = message[len(self.prefix):]
-                await self.call_cmd(cmd)
+                cmd = message.content[len(self.prefix):]
+                await self.call_cmd(message, cmd)
             elif message.content.startswith(len(self.main_prefix)):
-                cmd = message[len(self.main_prefix):]
-                await self.call_cmd(cmd)
+                cmd = message.content[len(self.main_prefix):]
+                await self.call_cmd(message, cmd)
                 
                 
                 msg = message.content[len(comPref+forBot):]
