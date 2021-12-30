@@ -19,8 +19,22 @@ class DisBot(discord.Client):
     async def on_ready(self):
         print("Бот начал работу")
         
-    async def call_cmd(self, msg, cmd):
-        pass
+    async def call_cmd(self, msg, full_cmd):
+        # команда - imperior call 1827
+        cmd = []
+        full_cmd_s = full_cmd.split(" ")
+        i = 0
+        while i < len(full_cmd_s):
+            if full_cmd_s[i] == "":
+                pass
+            else:
+                cmd += full_cmd_s[i]
+            i += 1
+            
+        if not len(cmd):
+            raise "Not command"
+        
+        
 
     async def on_message(self, message):
         if message.author.id != self.user.id:
