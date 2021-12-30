@@ -4,10 +4,10 @@ class command_standart:
     def __init__(self):
         pass
     
-    async def check(self):
+    async def check(self):#replaced
         pass
     
-    async def run(self):
+    async def run(self):#not changed
         isError = await self.check() #return False if is correct, return Error if.. Yes
         
         if not isError:
