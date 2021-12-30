@@ -35,7 +35,8 @@ class DisBot(discord.Client):
             raise "Not command"
         
         for i in self.commands.keys():
-            pass
+            if cmd[0].lower() == i:
+                await self.commands[i].run(msg, cmd[1:])
         
         
 
@@ -59,6 +60,7 @@ class DisBot(discord.Client):
                         await message.channel.send(msg)
                 await message.delete()
 
-client = DisBot()
-client.prefix = load()
-client.run(conf.token)
+if __name__ == "__main__":
+    client = DisBot()
+    client.prefix = load()
+    client.run(conf.token)
