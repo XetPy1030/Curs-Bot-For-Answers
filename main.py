@@ -34,6 +34,9 @@ class DisBot(discord.Client):
         if not len(cmd):
             raise "Not command"
         
+        for i in self.commands.keys():
+            pass
+        
         
 
     async def on_message(self, message):
