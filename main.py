@@ -50,7 +50,7 @@ class DisBot(discord.Client):
                 await self.call_cmd(message, cmd)
                 
                 
-                msg = message.content[len(comPref+forBot):]
+"""                msg = message.content[len(comPref+forBot):]
                 if msg.replace(" ", "") != "":
                     if message.reference:
                         ms = await message.channel.fetch_message(message.reference.message_id)
@@ -58,7 +58,7 @@ class DisBot(discord.Client):
                         await ms.reply(msg)
                     else:
                         await message.channel.send(msg)
-                await message.delete()
+                await message.delete()"""
 
 if __name__ == "__main__":
     client = DisBot()
