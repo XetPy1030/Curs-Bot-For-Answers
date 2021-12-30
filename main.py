@@ -36,18 +36,18 @@ class DisBot(discord.Client):
         
         for i in self.commands.keys():
             if cmd[0].lower() == i:
-                await self.commands[i].run(msg, cmd[1:])
+                await self.commands[i].run(msg, cmd)
         
         
 
     async def on_message(self, message):
-        if message.author.id != self.user.id:
-            if message.content.startswith(self.prefix):
-                cmd = message.content[len(self.prefix):]
-                await self.call_cmd(message, cmd)
-            elif message.content.startswith(len(self.main_prefix)):
-                cmd = message.content[len(self.main_prefix):]
-                await self.call_cmd(message, cmd)
+        #if message.author.id != self.user.id:
+        if message.content.startswith(self.prefix):
+            cmd = message.content[len(self.prefix):]
+            await self.call_cmd(message, cmd)
+        elif message.content.startswith(len(self.main_prefix)):
+            cmd = message.content[len(self.main_prefix):]
+            await self.call_cmd(message, cmd)
                 
                 
 """                msg = message.content[len(comPref+forBot):]
