@@ -21,23 +21,34 @@ class command_standart:
         pass
     
     async def check(self, msg, cmd):
-        isCor = True
-        if "noBot" in self.checklist["main"]["param"]:
-            isCor = not msg.author.bot
-        if "isBot" in self.checklist["main"]["param"]:
-            isCor = msg.author.bot
-        if "iam" in self.checklist["main"]["param"]:
-            isCor = msg.author.id == self.user.id
-        if "noI" in self.checklist["main"]["param"]:
-            isCor = msg.author.id != self.user.id
-        if "msgReference" in self.checklist["main"]["param"]:
-            isCor = msg.reference != None
-        if "noReference" in self.checklist["main"]["param"]:
-            isCor = msg.reference == None
-        if "doMention" in self.checklist["main"]["param"]:
-            isCor = len(msg.mentions)>0
-        if "noMention" in self.checklist["main"]["param"]:
-            isCor = len(msg.mentions)==0
+        try:
+            if "noBot" in self.checklist["main"]["param"]:
+                if msg.author.bot:
+                    raise "ErrorCheck"
+            if "isBot" in self.checklist["main"]["param"]:
+                if not msg.author.bot:
+                    raise "ErrorCheck"
+            if "iam" in self.checklist["main"]["param"]:
+                if not msg.author.id == self.user.id:
+                    raise "ErrorCheck"
+            if "noI" in self.checklist["main"]["param"]:
+                if not msg.author.id != self.user.id:
+                    raise "ErrorCheck"
+            if "msgReference" in self.checklist["main"]["param"]:
+                if not msg.reference != None:
+                    raise "ErrorCheck"
+            if "noReference" in self.checklist["main"]["param"]:
+                if not msg.reference == None:
+                    raise "ErrorCheck"
+            if "doMention" in self.checklist["main"]["param"]:
+                if not len(msg.mentions)>0:
+                    raise "ErrorCheck"
+            if "noMention" in self.checklist["main"]["param"]:
+                if not len(msg.mentions)==0:
+                    raise "ErrorCheck"
+            return True
+        except:
+            return False
     
     async def run(self, msg, cmd):#not changed
         isError = await self.check(msg, cmd) #return False if is correct, return Error if.. Yes
