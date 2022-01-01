@@ -16,7 +16,7 @@ class DisBot(discord.Client):
     main_prefix = conf.main_prefix #prefix not will change
     prefix = ">" #prefix will change
     commands = {
-        "test": commands.sendFromYourself.command()
+        "r": commands.sendFromYourself.command()
     }
     
     async def on_ready(self):
@@ -64,7 +64,7 @@ class DisBot(discord.Client):
                 print("Команда 1")
             cmd = message.content[len(self.prefix):]
             await self.call_cmd(message, cmd)
-        elif message.content.startswith(len(self.main_prefix)):
+        elif message.content.startswith(self.main_prefix):
             if self.debug:
                 print("Команда 2")
             cmd = message.content[len(self.main_prefix):]
