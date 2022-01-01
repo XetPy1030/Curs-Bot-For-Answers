@@ -12,11 +12,11 @@ def load():
 
 #немного фактов: Курц ты крут:D
 class DisBot(discord.Client):
-    debug = True
+    debug = False
     main_prefix = conf.main_prefix #prefix not will change
     prefix = ">" #prefix will change
     commands = {
-        "test": commands.sendFromYourself.command
+        "test": commands.sendFromYourself.command()
     }
     
     async def on_ready(self):
@@ -34,7 +34,7 @@ class DisBot(discord.Client):
             if full_cmd_s[i] == "":
                 pass
             else:
-                cmd += full_cmd_s[i]
+                cmd.append(full_cmd_s[i])
             i += 1
             
         if not len(cmd):

@@ -20,30 +20,30 @@ class command_standart:
     def __init__(self):
         pass
     
-    async def check(self, msg, cmd):
+    async def check(self, cl, msg, cmd):
         try:
-            if "noBot" in self.checklist["main"]["param"]:
+            if "noBot" in cl["main"]["param"]:
                 if msg.author.bot:
                     raise "ErrorCheck"
-            if "isBot" in self.checklist["main"]["param"]:
+            if "isBot" in cl["main"]["param"]:
                 if not msg.author.bot:
                     raise "ErrorCheck"
-            if "iam" in self.checklist["main"]["param"]:
+            if "iam" in cl["main"]["param"]:
                 if not msg.author.id == self.user.id:
                     raise "ErrorCheck"
-            if "noI" in self.checklist["main"]["param"]:
+            if "noI" in cl["main"]["param"]:
                 if not msg.author.id != self.user.id:
                     raise "ErrorCheck"
-            if "msgReference" in self.checklist["main"]["param"]:
+            if "msgReference" in cl["main"]["param"]:
                 if not msg.reference != None:
                     raise "ErrorCheck"
-            if "noReference" in self.checklist["main"]["param"]:
+            if "noReference" in cl["main"]["param"]:
                 if not msg.reference == None:
                     raise "ErrorCheck"
-            if "doMention" in self.checklist["main"]["param"]:
+            if "doMention" in cl["main"]["param"]:
                 if not len(msg.mentions)>0:
                     raise "ErrorCheck"
-            if "noMention" in self.checklist["main"]["param"]:
+            if "noMention" in cl["main"]["param"]:
                 if not len(msg.mentions)==0:
                     raise "ErrorCheck"
             return True
@@ -51,7 +51,7 @@ class command_standart:
             return False
     
     async def run(self, msg, cmd):#not changed
-        isError = await self.check(msg, cmd) #return False if is correct, return Error if.. Yes
+        isError = await self.check(self.checklist, msg, cmd) #return False if is correct, return Error if.. Yes
         
         if not isError:
             return True #all correct and succesful run
