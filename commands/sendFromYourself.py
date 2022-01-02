@@ -1,7 +1,7 @@
 import commands.standart
 
 class command(commands.standart.command_standart):
-    checklist = {"main": {"param": ["noMention"]}}
+    checklist = {"main": {"param": []}}
     
     async def run(self, message, cmd):
         if await super().check(message, cmd):
