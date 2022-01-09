@@ -1,4 +1,5 @@
 import commands_other.checklist_types_file
+import re
 
 # command = call Ktoto agas 123
 class command_standart:
@@ -41,10 +42,10 @@ class command_standart:
                 if not msg.reference == None:
                     raise "ErrorCheck"
             if "doMention" in self.checklist["main"]["param"]:
-                if not len(msg.mentions)>0:
+                if not len(re.findall(r"<@!(\d{18})>", msg.content))>0:
                     raise "ErrorCheck"
             if "noMention" in self.checklist["main"]["param"]:
-                if not len(msg.mentions)==0:
+                if len(re.findall(r"<@!(\d{18})>", msg.content))!=0:
                     raise "ErrorCheck"
             return True
         except:

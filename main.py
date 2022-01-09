@@ -12,7 +12,7 @@ def load():
 
 #немного фактов: Курц ты крут:D
 class DisBot(discord.Client):
-    debug = False
+    debug = True
     main_prefix = conf.main_prefix #prefix not will change
     prefix = ">" #prefix will change
     commands = {
@@ -52,12 +52,11 @@ class DisBot(discord.Client):
                 if self.debug:
                     print("Команда равняется")
                 await self.commands[i].run(msg, cmd)
-        
-        
 
     async def on_message(self, message):
         if self.debug:
-            print("Смс")
+            print(message.reference)
+            print(message.mentions)
         #if message.author.id != self.user.id:
         if message.content.startswith(self.prefix):
             if self.debug:
