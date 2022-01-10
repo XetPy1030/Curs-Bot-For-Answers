@@ -1,7 +1,6 @@
 import discord
 import config.config as conf
-
-import commands.sendFromYourself
+import config.commands
 
 def load():
     try:
@@ -15,9 +14,7 @@ class DisBot(discord.Client):
     debug = True
     main_prefix = conf.main_prefix #prefix not will change
     prefix = ">" #prefix will change
-    commands = {
-        "r": commands.sendFromYourself.command()
-    }
+    commands = {}
     
     async def on_ready(self):
         print("Бот начал работу")
@@ -83,4 +80,5 @@ class DisBot(discord.Client):
 if __name__ == "__main__":
     client = DisBot()
     client.prefix = load()
+    client.commands = config.commands.commands
     client.run(conf.token)
