@@ -3,6 +3,7 @@ import re
 
 # command = call Ktoto agas 123
 class command_standart:
+    work = True
     manifest = {"name": "base", "desc": "Base class for commands"}
     checklist_types = commands_other.checklist_types_file.checklist_types
     checklist = {"main": {"param": [], "paramEqual": {
